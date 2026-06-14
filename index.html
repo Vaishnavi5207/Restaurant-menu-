@@ -1,99 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Food Paradise</title>
 
 <style>
 body{
-font-family:Arial,sans-serif;
-margin:0;
-background:#f4f4f4;
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f4f4f4;
 }
 
 header{
-background:#ff5722;
-color:white;
-padding:20px;
-text-align:center;
+    background:#ff5722;
+    color:white;
+    text-align:center;
+    padding:20px;
 }
 
 .offer{
-background:#ffe082;
-padding:10px;
-text-align:center;
-font-weight:bold;
+    background:#ffe082;
+    text-align:center;
+    padding:10px;
+    font-weight:bold;
 }
 
-.search{
-padding:15px;
-text-align:center;
-}
-
-.search input{
-width:80%;
-padding:10px;
-border-radius:20px;
-border:1px solid #ccc;
-}
-
-.menu{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-padding:20px;
+.container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+    padding:20px;
 }
 
 .card{
-background:white;
-border-radius:12px;
-overflow:hidden;
-box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    background:white;
+    width:250px;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
 
 .card img{
-width:100%;
-height:180px;
-object-fit:cover;
+    width:100%;
+    height:180px;
+    object-fit:cover;
 }
 
 .card-content{
-padding:15px;
-}
-
-.rating{
-color:green;
-font-weight:bold;
+    padding:15px;
 }
 
 .price{
-font-size:18px;
-font-weight:bold;
-margin-top:10px;
+    color:#ff5722;
+    font-weight:bold;
+    font-size:18px;
 }
 
 button{
-background:#ff5722;
-color:white;
-border:none;
-padding:10px;
-border-radius:6px;
-cursor:pointer;
-width:100%;
-margin-top:10px;
+    background:#ff5722;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:5px;
+    cursor:pointer;
+    width:100%;
+    margin-top:10px;
 }
 
 .cart{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#ff5722;
-color:white;
-padding:15px 20px;
-border-radius:50px;
-font-weight:bold;
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.cart h2{
+    color:#ff5722;
+}
+
+.cart ul{
+    list-style:none;
+    padding:0;
+}
+
+.cart li{
+    margin:10px 0;
+}
+
+.remove-btn{
+    background:red;
+    width:auto;
+    padding:5px 10px;
+    margin-left:10px;
+}
+
+.checkout{
+    background:green;
 }
 </style>
 </head>
@@ -102,27 +107,22 @@ font-weight:bold;
 
 <header>
 <h1>🍽 Food Paradise</h1>
-<p>Order Your Favourite Food</p>
+<p>Delicious Food Delivered Fast</p>
 </header>
 
 <div class="offer">
 🎉 Flat 30% OFF on orders above ₹499
 </div>
 
-<div class="search">
-<input type="text" placeholder="Search food...">
-</div>
-
-<div class="menu">
+<div class="container">
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800" alt="Pizza">
 <div class="card-content">
 <h3>Margherita Pizza</h3>
-<p>Cheesy pizza with fresh toppings.</p>
-<p class="rating">⭐ 4.8</p>
+<p>Fresh cheese pizza</p>
 <p class="price">₹249</p>
-<button onclick="addToCart()">Add to Cart</button>
+<button onclick="addToCart('Margherita Pizza',249)">Add to Cart</button>
 </div>
 </div>
 
@@ -130,21 +130,19 @@ font-weight:bold;
 <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800" alt="Burger">
 <div class="card-content">
 <h3>Veg Burger</h3>
-<p>Crispy patty with veggies.</p>
-<p class="rating">⭐ 4.7</p>
+<p>Crispy Veg Burger</p>
 <p class="price">₹149</p>
-<button onclick="addToCart()">Add to Cart</button>
+<button onclick="addToCart('Veg Burger',149)">Add to Cart</button>
 </div>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800" alt="Cold Coffee">
+<img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800" alt="Coffee">
 <div class="card-content">
 <h3>Cold Coffee</h3>
-<p>Refreshing chilled coffee.</p>
-<p class="rating">⭐ 4.9</p>
+<p>Refreshing Drink</p>
 <p class="price">₹99</p>
-<button onclick="addToCart()">Add to Cart</button>
+<button onclick="addToCart('Cold Coffee',99)">Add to Cart</button>
 </div>
 </div>
 
@@ -152,26 +150,75 @@ font-weight:bold;
 <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800" alt="Cake">
 <div class="card-content">
 <h3>Chocolate Cake</h3>
-<p>Rich chocolate delight.</p>
-<p class="rating">⭐ 4.9</p>
+<p>Rich Chocolate Dessert</p>
 <p class="price">₹199</p>
-<button onclick="addToCart()">Add to Cart</button>
+<button onclick="addToCart('Chocolate Cake',199)">Add to Cart</button>
 </div>
 </div>
 
 </div>
 
 <div class="cart">
-🛒 Cart: <span id="count">0</span>
+<h2>🛒 Your Cart (<span id="count">0</span>)</h2>
+
+<ul id="cartItems"></ul>
+
+<h3>Total: ₹<span id="total">0</span></h3>
+
+<button class="checkout" onclick="checkout()">
+Proceed to Checkout
+</button>
 </div>
 
 <script>
+
+let total = 0;
 let count = 0;
 
-function addToCart(){
-count++;
-document.getElementById("count").innerText = count;
+function addToCart(item, price)
+{
+    let cartItems = document.getElementById("cartItems");
+
+    let li = document.createElement("li");
+
+    li.innerHTML =
+    item + " - ₹" + price +
+    ' <button class="remove-btn" onclick="removeItem(this,' +
+    price +
+    ')">Remove</button>';
+
+    cartItems.appendChild(li);
+
+    total += price;
+    count++;
+
+    document.getElementById("total").innerText = total;
+    document.getElementById("count").innerText = count;
 }
+
+function removeItem(button, price)
+{
+    button.parentElement.remove();
+
+    total -= price;
+    count--;
+
+    document.getElementById("total").innerText = total;
+    document.getElementById("count").innerText = count;
+}
+
+function checkout()
+{
+    if(count === 0)
+    {
+        alert("Your cart is empty!");
+    }
+    else
+    {
+        alert("✅ Order Placed Successfully!\nTotal Amount: ₹" + total);
+    }
+}
+
 </script>
 
 </body>
